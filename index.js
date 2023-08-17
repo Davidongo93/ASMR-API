@@ -14,13 +14,13 @@
 //⣿⣿⣿⣿⡿⢟⠩⠉⣠⣴⣶⢆⣴⡶⠿⠟⠛⠋⠉⠩⠄⠉⢀⠠⠂⠈⠄⠐⠄⠄⠄
 //Server ASMR-API
 const server = require('./src/app.js');
-const db = require('./src/db.js');
+const { db } = require('./src/db.js');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3001;
 
 db.once('open', () => {
-  server.listen(PORT, () => {
-    console.log(`ASMR-API listening at port: ${PORT} Have a nice day!`);
-  });
+	server.listen(PORT, () => {
+		console.log(`ASMR-API listening at port: ${PORT} Have a nice day!`);
+	});
 });

@@ -1,11 +1,9 @@
 const { Router } = require('express');
+const soundRouter = require('./sounds');
 
 const router = Router();
 
-// Ruta GET para /sounds
-router.get('/sounds', (req, res) => {
-  const responseString = "pelotu2 dev";
-  res.send(responseString);
-});
+router.use('/sounds', soundRouter);
+// router.use('/users', userRouter);
 
 module.exports = router;
