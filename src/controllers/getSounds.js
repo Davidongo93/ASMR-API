@@ -2,13 +2,12 @@ const { Client } = require('podcast-api');
 const totalEpisodesToFetch = 20;
 
 const getSounds = async () => {
-	const client = Client({ apiKey: '9f0968d155c142648b979852e4a7f741' });
-	const allEpisodes = [];
+	const client = Client({ apiKey: 'fb206d4cf50041218cd71e97e205143c' });
+	// const client = Client({ apiKey: 'fb206d4cf50041218cd71e97e205143c' });
+	let allEpisodes = [];
+	let nextEpisodePubDate = null; // Initialize to null for the first fetch
 
-	let nextEpisodePubDate = 0;
-	let episodesFetched = 0;
-
-	while (episodesFetched < totalEpisodesToFetch) {
+	while (allEpisodes.length < totalEpisodesToFetch) {
 		const response = await client.fetchPodcastById({
 			id: '407f99bd98764c48a8ce81fd9ce9a72f',
 			next_episode_pub_date: nextEpisodePubDate,
@@ -18,19 +17,27 @@ const getSounds = async () => {
 		const episodes = response.data.episodes;
 
 		if (episodes.length === 0) {
-			break;
+			break; // No more episodes available
 		}
 
-		allEpisodes.push(...episodes);
-		episodesFetched += episodes.length;
-		nextEpisodePubDate = episodes[episodes.length - 1].next_episode_pub_date;
+		const episodesToFetch = Math.min(
+			totalEpisodesToFetch - allEpisodes.length,
+			episodes.length
+		);
+		const fetchedEpisodes = episodes.slice(0, episodesToFetch).map((item) => ({
+			id: item.id,
+			published_at: item.pub_date_ms,
+			title: item.title,
+			audio: item.audio,
+		}));
+
+		allEpisodes = [...allEpisodes, ...fetchedEpisodes];
+
+		// Update nextEpisodePubDate with the pub_date_ms of the last episode fetched
+		nextEpisodePubDate = fetchedEpisodes[episodesToFetch - 1].published_at;
 	}
 
-	return allEpisodes.slice(0, totalEpisodesToFetch).map((item) => ({
-		id: item.id,
-		title: item.title,
-		audio: item.audio,
-	}));
+	return allEpisodes;
 };
 
 module.exports = getSounds;
