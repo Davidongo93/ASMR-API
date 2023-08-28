@@ -1,9 +1,12 @@
+require('dotenv').config();
 const { Client } = require('podcast-api');
-const totalEpisodesToFetch = 20;
+const { API_KEY_DAVE, API_KEY_SAMZA } = process.env;
+const totalEpisodesToFetch = 10;
 
-const getSounds = async () => {
-	const client = Client({ apiKey: 'fb206d4cf50041218cd71e97e205143c' });
-	// const client = Client({ apiKey: 'fb206d4cf50041218cd71e97e205143c' });
+const getSoundsAPI = async () => {
+	const client = Client({ apiKey: API_KEY_DAVE });
+	/* API Key Dave*/
+	// const client = Client({ apiKey: API_KEY_SAMZA }); /* API Key Samza*/
 	let allEpisodes = [];
 	let nextEpisodePubDate = null; // Initialize to null for the first fetch
 
@@ -15,6 +18,7 @@ const getSounds = async () => {
 		});
 
 		const episodes = response.data.episodes;
+		// return episodes;
 
 		if (episodes.length === 0) {
 			break; // No more episodes available
@@ -40,4 +44,4 @@ const getSounds = async () => {
 	return allEpisodes;
 };
 
-module.exports = getSounds;
+module.exports = getSoundsAPI;
