@@ -14,7 +14,7 @@ mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_DATABASE}`, {
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Error cant connect MongoDB:'));
 db.once('open', () => {
-	console.log('success MongoDB con');
+	console.log('success MongoDB connection');
 });
 
 // import models

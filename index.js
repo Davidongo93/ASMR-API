@@ -21,6 +21,8 @@ const PORT = process.env.PORT || 3001;
 
 db.once('open', () => {
 	server.listen(PORT, () => {
-		console.log(`ASMR-API listening at port: ${PORT} Have a nice day!`);
+		console.log(
+			`ASMR-API listening at port: ${PORT} Have a nice day my nigga chad!`
+		);
 	});
 });

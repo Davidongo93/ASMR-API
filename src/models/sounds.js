@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const soundSchema = new mongoose.Schema({
-	id: {
-		type: String,
-		required: true,
-	},
 	published_at: {
 		type: Number,
 		required: true,
