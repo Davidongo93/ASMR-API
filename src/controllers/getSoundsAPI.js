@@ -1,9 +1,8 @@
 require('dotenv').config();
 const { Client } = require('podcast-api');
 const { Sound } = require('../db');
-const { get } = require('mongoose');
 const { API_KEY_DAVE, API_KEY_SAMZA } = process.env;
-const totalEpisodesToFetch = 80;
+const totalEpisodesToFetch = 40;
 
 const getSoundsAPI = async () => {
 	const client = Client({ apiKey: API_KEY_DAVE });
@@ -44,7 +43,6 @@ const getSoundsAPI = async () => {
 			await new Promise((resolve) => setTimeout(resolve, 1000));
 		} catch (error) {
 			console.error('Error:', error);
-			// Manejo de errores aquí
 		}
 	}
 

@@ -13,6 +13,10 @@ const soundSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	category: {
+		type: String,
+		default: 'asmr',
+	},
 });
 
 const Sound = mongoose.model('Sound', soundSchema);
