@@ -17,6 +17,9 @@ const soundSchema = new mongoose.Schema({
 		type: String,
 		default: 'asmr',
 	},
+	image: {
+		type: String,
+	},
 });
 
 const Sound = mongoose.model('Sound', soundSchema);
