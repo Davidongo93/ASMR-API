@@ -1,4 +1,4 @@
 const postUsers = async () => {
-return "This is very embarrassing.";
+return "This is very embarrassing. :S";
 }
 module.exports = postUsers;
