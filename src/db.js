@@ -10,6 +10,10 @@ mongoose.connect(DB_ATLAS, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
+// mongoose.connect(DB_DEPLOY, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Error cant connect MongoDB:'));
