@@ -1,21 +1,9 @@
-// typeaheadController.js
-const { Client } = require('podcast-api');
-const { API_KEY } = process.env;
+const { Sound } = require('../db');
 
 const typeaheadController = async (searchTerm) => {
-  try {
-    const client = Client({
-      apiKey: API_KEY || null,
-    });
-
-    const response = await client.typeahead({ q: searchTerm, show_podcasts: 1 });
-
-    const suggestions = response.data;
-
+const suggestions = await Sound.find({ title: { $regex: searchTerm, $options: 'i' } }).limit(10);
+console.log(suggestions);
     return suggestions;
-  } catch (error) {
-    throw new Error('Error rendering suggestions?');
-  }
 };
 
 module.exports = typeaheadController;
