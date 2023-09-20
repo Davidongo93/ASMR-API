@@ -2,8 +2,8 @@ const typeaheadController = require('../controllers/typeaheadController');
 
 const typeaheadHandler = async (req, res) => {
   try {
-    const searchTerm = req.query.q; 
-
+    const searchTerm = req.query; 
+console.log(searchTerm);
     const suggestions = await typeaheadController(searchTerm);
 
     res.json(suggestions);

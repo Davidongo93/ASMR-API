@@ -1,11 +1,11 @@
 // typeaheadController.js
 const { Client } = require('podcast-api');
-const { LISTEN_API_KEY } = process.env;
+const { API_KEY } = process.env;
 
 const typeaheadController = async (searchTerm) => {
   try {
     const client = Client({
-      apiKey: LISTEN_API_KEY || null,
+      apiKey: API_KEY || null,
     });
 
     const response = await client.typeahead({ q: searchTerm, show_podcasts: 1 });
