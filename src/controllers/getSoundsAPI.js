@@ -68,6 +68,7 @@ const categoryToImageMap = {
 const soundsDB = async () => {
 	// Actualiza la propiedad "image" en función de la categoría para cada sonido existente
 	const existingSounds = await Sound.find();
+	console.log(existingSounds);
 	for (const sound of existingSounds) {
 		const { category, _id } = sound;
 
